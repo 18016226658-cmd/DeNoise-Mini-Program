@@ -1,0 +1,165 @@
+<!--pages/AudioSep/AudioSep.wxml-->
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">音频分离处理</text>
+    <text class="subtitle">人声、伴奏、鼓声、贝斯分离</text>
+  </view>
+
+  <!-- 文件选择区域 -->
+  <view class="section">
+    <button class="select-btn" bindtap="chooseAudio">
+      <text class="btn-icon">🎵</text>
+      <text>选择音频文件</text>
+    </button>
+    <view class="file-info" wx:if="{{org_FileName}}">
+      <text class="file-name">{{org_FileName}}</text>
+    </view>
+  </view>
+
+  <!-- 音频信息卡片 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <view class="info-title">音频信息</view>
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-label">标题</text>
+        <text class="info-value">{{title || org_FileName || '未知'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">歌手</text>
+        <text class="info-value">{{artist || '未知'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">文件大小</text>
+        <text class="info-value">{{fileSize}} MB</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">总时长</text>
+        <text class="info-value">{{duration}}</text>
+      </view>
+      <view class="info-item highlight">
+        <text class="info-label">剩余分离次数</text>
+        <text class="info-value count">{{MaxSepTimes - CurSepTimes}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 原始音频播放 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <view class="audio-section-title">
+      <text class="section-icon">🎼</text>
+      <text>原始音频</text>
+    </view>
+    <view class="audio-player-wrapper">
+      <audio id="myAudio" class="audio-player" src="{{audioPath}}" name="{{title}}" author="{{album}}" bindtimeupdate="onAudioTimeUpdate" controls></audio>
+      <button class="control-btn" bindtap="SetAudioStart" disabled="{{!audioPath}}">
+        <image class="icon" src="/static/icon/GotoStart.png" mode="widthFix"></image>
+        <text>重置</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <view class="action-buttons">
+      <button class="action-btn primary" bindtap="separateAudio" disabled="{{!audioPath}}">
+        <text class="btn-icon">🎹</text>
+        <text>开始分离</text>
+      </button>
+      <button class="action-btn secondary" bindtap="getUserAndAudioInfo">
+        <text class="btn-icon">🔄</text>
+        <text>刷新页面</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 分离后的音频轨道 -->
+  <view class="section" wx:if="{{vocalsPath || otherPath || drumsPath || bassPath}}">
+    <view class="audio-section-title">
+      <text class="section-icon">🎵</text>
+      <text>分离结果</text>
+    </view>
+
+    <!-- 人声 -->
+    <view class="track-card" wx:if="{{vocalsPath}}">
+      <view class="track-header">
+        <text class="track-icon">🎤</text>
+        <text class="track-name">人声 (Vocals)</text>
+      </view>
+      <view class="audio-player-wrapper">
+        <audio id="VocalsAudio" class="audio-player" src="{{vocalsPath}}" name="人声" author="Vocals" bindtimeupdate="onVocalsTimeUpdate" controls></audio>
+        <view class="track-controls">
+          <button class="control-btn small" bindtap="SetVocalsStart" disabled="{{!vocalsPath}}">
+            <image class="icon" src="/static/icon/GotoStart.png" mode="widthFix"></image>
+          </button>
+          <button class="control-btn small download" bindtap="DownloadVocals" disabled="{{!vocalsPath}}">
+            <image class="icon" src="/static/icon/DownAudio.png" mode="widthFix"></image>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 伴奏 -->
+    <view class="track-card" wx:if="{{otherPath}}">
+      <view class="track-header">
+        <text class="track-icon">🎸</text>
+        <text class="track-name">伴奏 (Other)</text>
+      </view>
+      <view class="audio-player-wrapper">
+        <audio id="OtherAudio" class="audio-player" src="{{otherPath}}" name="伴奏" author="Other" bindtimeupdate="onOtherTimeUpdate" controls></audio>
+        <view class="track-controls">
+          <button class="control-btn small" bindtap="SetOtherStart" disabled="{{!otherPath}}">
+            <image class="icon" src="/static/icon/GotoStart.png" mode="widthFix"></image>
+          </button>
+          <button class="control-btn small download" bindtap="DownloadOther" disabled="{{!otherPath}}">
+            <image class="icon" src="/static/icon/DownAudio.png" mode="widthFix"></image>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 鼓声 -->
+    <view class="track-card" wx:if="{{drumsPath}}">
+      <view class="track-header">
+        <text class="track-icon">🥁</text>
+        <text class="track-name">鼓声 (Drums)</text>
+      </view>
+      <view class="audio-player-wrapper">
+        <audio id="DrumsAudio" class="audio-player" src="{{drumsPath}}" name="鼓声" author="Drums" bindtimeupdate="onDrumsTimeUpdate" controls></audio>
+        <view class="track-controls">
+          <button class="control-btn small" bindtap="SetDrumsStart" disabled="{{!drumsPath}}">
+            <image class="icon" src="/static/icon/GotoStart.png" mode="widthFix"></image>
+          </button>
+          <button class="control-btn small download" bindtap="DownloadDrums" disabled="{{!drumsPath}}">
+            <image class="icon" src="/static/icon/DownAudio.png" mode="widthFix"></image>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 贝斯 -->
+    <view class="track-card" wx:if="{{bassPath}}">
+      <view class="track-header">
+        <text class="track-icon">🎸</text>
+        <text class="track-name">贝斯 (Bass)</text>
+      </view>
+      <view class="audio-player-wrapper">
+        <audio id="BassAudio" class="audio-player" src="{{bassPath}}" name="贝斯" author="Bass" bindtimeupdate="onBassTimeUpdate" controls></audio>
+        <view class="track-controls">
+          <button class="control-btn small" bindtap="SetBassStart" disabled="{{!bassPath}}">
+            <image class="icon" src="/static/icon/GotoStart.png" mode="widthFix"></image>
+          </button>
+          <button class="control-btn small download" bindtap="DownloadBass" disabled="{{!bassPath}}">
+            <image class="icon" src="/static/icon/DownAudio.png" mode="widthFix"></image>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态提示 -->
+  <view class="empty-state" wx:if="{{!audioPath}}">
+    <text class="empty-icon">🎵</text>
+    <text class="empty-text">请先选择音频文件开始分离</text>
+  </view>
+</view>

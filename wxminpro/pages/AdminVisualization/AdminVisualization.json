@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "数据可视化",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "ec-canvas": "/ec-canvas/ec-canvas"
+  }
+}
+
+

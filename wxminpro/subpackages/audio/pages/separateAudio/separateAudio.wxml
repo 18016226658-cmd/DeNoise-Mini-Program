@@ -1,0 +1,88 @@
+<!--pages/separateAudio/separateAudio.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">音频分离</text>
+    <text class="subtitle">将音频分离成人声、伴奏等</text>
+  </view>
+
+  <!-- 文件选择区域 -->
+  <view class="section">
+    <button class="select-btn" bindtap="chooseAudio">
+      <text>选择音频文件</text>
+    </button>
+    <view class="file-info" wx:if="{{orgFileName}}">
+      <text class="file-name">{{orgFileName}}</text>
+    </view>
+  </view>
+
+  <!-- 音频信息 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <view class="info-title">音频信息</view>
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-label">文件大小：</text>
+        <text class="info-value">{{fileSize}} MB</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">总时长：</text>
+        <text class="info-value">{{duration}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">标题：</text>
+        <text class="info-value">{{title || orgFileName}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">歌手：</text>
+        <text class="info-value">{{artist || '未知'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 原始音频播放 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <view class="audio-title">
+      <text>原始音频</text>
+    </view>
+    <view class="audio-container">
+      <audio id="myAudio" class="audio-player" src="{{audioPath}}" name="{{title}}" author="{{artist}}" controls></audio>
+    </view>
+  </view>
+
+  <!-- 分离按钮 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <button class="process-btn" bindtap="separateAudio" disabled="{{!audioPath}}">
+      <text>开始分离音频</text>
+    </button>
+  </view>
+
+  <!-- 分离结果 -->
+  <view class="section" wx:if="{{vocalsPath || otherPath}}">
+    <view class="result-title">分离结果</view>
+    
+    <!-- 人声 -->
+    <view class="audio-section" wx:if="{{vocalsPath}}">
+      <view class="audio-title">
+        <text>人声</text>
+      </view>
+      <view class="audio-container">
+        <audio id="VocalsAudio" class="audio-player" src="{{vocalsPath}}" name="人声" author="Vocals" controls></audio>
+        <button class="download-btn" bindtap="downloadVocals">
+          <text>下载人声</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 伴奏 -->
+    <view class="audio-section" wx:if="{{otherPath}}">
+      <view class="audio-title">
+        <text>伴奏</text>
+      </view>
+      <view class="audio-container">
+        <audio id="OtherAudio" class="audio-player" src="{{otherPath}}" name="伴奏" author="Other" controls></audio>
+        <button class="download-btn" bindtap="downloadOther">
+          <text>下载伴奏</text>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,121 @@
+<!--pages/EditCsb/EditCsb.wxml-->
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">模型参数设置</text>
+    <text class="subtitle">配置聊天仿真模型参数</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <!-- 年龄范围 -->
+    <view class="form-group">
+      <view class="form-header">
+        <text class="form-icon">👥</text>
+        <text class="form-title">年龄范围</text>
+      </view>
+      <view class="input-row">
+        <view class="input-item">
+          <text class="input-label">最小年龄 (MinYear)</text>
+          <input 
+            class="form-input" 
+            type="number" 
+            bindinput="onParamMinYearInput" 
+            placeholder="10-30"
+            value="{{MinYear}}"
+            maxlength="2" />
+          <text class="input-hint">范围：10-30</text>
+        </view>
+        <view class="input-item">
+          <text class="input-label">最大年龄 (MaxYear)</text>
+          <input 
+            class="form-input" 
+            type="number" 
+            bindinput="onParamMaxYearInput" 
+            placeholder="30-80"
+            value="{{MaxYear}}"
+            maxlength="2" />
+          <text class="input-hint">范围：30-80</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 性别比例 -->
+    <view class="form-group">
+      <view class="form-header">
+        <text class="form-icon">⚖️</text>
+        <text class="form-title">性别比例</text>
+      </view>
+      <view class="input-item">
+        <text class="input-label">男女比例 (BL%)</text>
+        <input 
+          class="form-input" 
+          type="number" 
+          bindinput="onParamBLInput" 
+          placeholder="0-100"
+          value="{{BL}}"
+          maxlength="3" />
+        <text class="input-hint">范围：0-100</text>
+      </view>
+    </view>
+
+    <!-- 人数设置 -->
+    <view class="form-group">
+      <view class="form-header">
+        <text class="form-icon">👨‍👩</text>
+        <text class="form-title">参与者人数</text>
+      </view>
+      <view class="input-row">
+        <view class="input-item">
+          <text class="input-label">男性人数 (ManNumber)</text>
+          <input 
+            class="form-input" 
+            type="number" 
+            bindinput="onParamManNInput" 
+            placeholder="30-50"
+            value="{{ManN}}"
+            maxlength="2" />
+          <text class="input-hint">范围：30-50</text>
+        </view>
+        <view class="input-item">
+          <text class="input-label">女性人数 (WenmenNumber)</text>
+          <input 
+            class="form-input" 
+            type="number" 
+            bindinput="onParamWenmenNInput" 
+            placeholder="30-50"
+            value="{{WenmenN}}"
+            maxlength="2" />
+          <text class="input-hint">范围：30-50</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 聊天记录数 -->
+    <view class="form-group">
+      <view class="form-header">
+        <text class="form-icon">💬</text>
+        <text class="form-title">聊天记录</text>
+      </view>
+      <view class="input-item">
+        <text class="input-label">聊天记录数 (ChatNumber)</text>
+        <input 
+          class="form-input" 
+          type="number" 
+          bindinput="onParamChatNInput" 
+          placeholder="2000-20000"
+          value="{{ChatN}}"
+          maxlength="5" />
+        <text class="input-hint">范围：2000-20000</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting}}">
+      <text class="btn-icon">{{submitting ? '⏳' : '✓'}}</text>
+      <text>{{submitting ? '提交中...' : '提交参数'}}</text>
+    </button>
+  </view>
+</view>

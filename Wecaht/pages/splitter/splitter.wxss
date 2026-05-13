@@ -1,0 +1,368 @@
+/* pages/splitter/splitter.wxss */
+.container {
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* 输入卡片 */
+.input-card {
+  margin-top: 20rpx;
+}
+
+.input-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF69B4;
+  margin-bottom: 20rpx;
+}
+
+.input-wrapper {
+  margin: 20rpx 0;
+}
+
+.number-input {
+  width: 100%;
+  min-height: 200rpx;
+  font-size: 32rpx;
+  line-height: 1.6;
+  color: #333;
+}
+
+.input-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15rpx 0;
+  font-size: 24rpx;
+}
+
+.digit-count {
+  color: #999;
+}
+
+.error-text {
+  color: #FF6B6B;
+  font-size: 24rpx;
+}
+
+/* 数字性质预览 */
+.number-type-preview {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  background: #FFF0F5;
+  border-radius: 15rpx;
+  border-left: 4rpx solid #FF69B4;
+}
+
+/* 分解模式选择 */
+.mode-select {
+  margin: 10rpx 0 20rpx;
+  padding: 16rpx 20rpx;
+  background: #F9F9FF;
+  border-radius: 15rpx;
+  border-left: 4rpx solid #8A2BE2;
+}
+
+.mode-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10rpx;
+}
+
+.mode-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.mode-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  padding: 8rpx 0;
+}
+
+.mode-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.mode-name {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.mode-desc {
+  font-size: 22rpx;
+  color: #888;
+}
+
+.type-preview-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.type-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-right: 10rpx;
+}
+
+.type-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  background: #FFFFFF;
+}
+
+.type-desc {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.5;
+}
+
+/* 进度卡片 */
+.progress-card {
+  margin-top: 20rpx;
+}
+
+.progress-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF69B4;
+  margin-bottom: 20rpx;
+}
+
+.progress-status {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.progress-bar-wrapper {
+  margin: 20rpx 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20rpx;
+  background: #F0F0F0;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFB6C1 0%, #FF69B4 100%);
+  border-radius: 10rpx;
+  transition: width 0.3s;
+}
+
+.progress-info {
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 结果卡片 */
+.result-card {
+  margin-top: 20rpx;
+}
+
+.result-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF69B4;
+  margin-bottom: 20rpx;
+}
+
+.result-time {
+  font-size: 24rpx;
+  font-weight: normal;
+  color: #999;
+}
+
+/* 结果信息行 */
+.result-info-row {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.info-item {
+  flex: 1;
+  padding: 20rpx;
+  background: #FFF0F5;
+  border-radius: 15rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.info-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.type-prime {
+  color: #4CAF50;
+}
+
+.type-composite {
+  color: #FF9800;
+}
+
+.type-zero,
+.type-unit {
+  color: #9E9E9E;
+}
+
+.type-unknown {
+  color: #F44336;
+}
+
+.level-complete {
+  color: #4CAF50;
+}
+
+.level-partial {
+  color: #FF9800;
+}
+
+.level-failed {
+  color: #F44336;
+}
+
+.info-desc {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.original-number {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  background: #FFF0F5;
+  border-radius: 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.original-number .label {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 10rpx;
+}
+
+.original-number .value {
+  font-size: 28rpx;
+  color: #333;
+  word-break: break-all;
+}
+
+.factors-section {
+  margin: 20rpx 0;
+}
+
+.factors-section .label {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.factors-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+}
+
+.factor-item {
+  padding: 15rpx 25rpx;
+  background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
+  color: #FFFFFF;
+  border-radius: 50rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.factor-number {
+  font-weight: bold;
+}
+
+.factor-check {
+  font-size: 22rpx;
+  opacity: 0.9;
+}
+
+.factorization-form {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  background: #FFF0F5;
+  border-radius: 10rpx;
+}
+
+.factorization-form .label {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.formula {
+  font-size: 28rpx;
+  color: #333;
+  word-break: break-all;
+  line-height: 1.8;
+}
+
+.result-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 30rpx;
+}
+
+.result-actions button {
+  flex: 1;
+}
+
+/* 提示卡片 */
+.tip-card {
+  margin-top: 20rpx;
+}
+
+.tip-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FF69B4;
+  margin-bottom: 20rpx;
+}
+
+.tip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.tip-content text {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.8;
+}
+

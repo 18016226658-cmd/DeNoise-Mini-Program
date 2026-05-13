@@ -1,0 +1,64 @@
+<!--pages/history/history.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">降噪历史记录</text>
+    <text class="subtitle">共 {{historyList.length}} 条记录</text>
+  </view>
+
+  <view class="content">
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+
+    <view wx:elif="{{historyList.length === 0}}" class="empty">
+      <text>{{emptyText}}</text>
+    </view>
+
+    <view wx:else class="history-list">
+      <view class="history-item" wx:for="{{historyList}}" wx:key="index">
+        <view class="item-header">
+          <text class="file-name">{{item.orgFileName || item.AudioName || item.filename}}</text>
+        </view>
+
+        <view class="item-meta">
+          <view class="meta-item" wx:if="{{item.UserName}}">
+            <text class="meta-label">操作人：</text>
+            <text class="meta-value">{{item.UserName}}</text>
+          </view>
+          <view class="meta-item" wx:if="{{item.createTime || item.DeNoiseTime}}">
+            <text class="meta-label">操作时间：</text>
+            <text class="meta-value">{{item.createTime || item.DeNoiseTime}}</text>
+          </view>
+        </view>
+
+        <view class="item-info">
+          <text class="info-label">文件大小：</text>
+          <text class="info-value">{{item.fileSize}} MB</text>
+        </view>
+
+        <view class="item-info">
+          <text class="info-label">时长：</text>
+          <text class="info-value">{{item.duration}}</text>
+        </view>
+
+        <view class="item-info">
+          <text class="info-label">声道数：</text>
+          <text class="info-value">{{item.n_channels || item.N_channels}}</text>
+        </view>
+
+        <view class="audio-controls">
+          <button class="play-btn" bindtap="playOriginal" data-index="{{index}}">
+            <text>播放原声</text>
+          </button>
+          <button class="play-btn" bindtap="playDenoised" data-index="{{index}}">
+            <text>播放降噪</text>
+          </button>
+          <button class="download-btn" bindtap="downloadFile" data-index="{{index}}">
+            <text>下载</text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+

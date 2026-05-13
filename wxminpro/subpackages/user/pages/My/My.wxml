@@ -1,0 +1,66 @@
+<!--pages/My/My.wxml-->
+<view class="page-container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">浏览注册用户表</text>
+    <text class="subtitle">用户列表</text>
+  </view>
+
+  <!-- 操作按钮区域 -->
+  <view class="section action-section">
+    <button class="refresh-btn" bindtap="EditUser" disabled="{{loading}}">
+      <text class="btn-icon">🔄</text>
+      <text wx:if="{{!loading}}">刷新用户列表</text>
+      <text wx:else>加载中...</text>
+    </button>
+    <view class="user-count" wx:if="{{listData.length > 0}}">
+      <text class="count-label">共</text>
+      <text class="count-number">{{listData.length}}</text>
+      <text class="count-label">位用户</text>
+    </view>
+  </view>
+
+  <!-- 用户列表表格 -->
+  <view class="section table-section">
+    <scroll-view class="scroll-view" scroll-y="true" enable-back-to-top="true">
+      <!-- 表格头部 -->
+      <view class="table">
+        <view class="tr table-header">
+          <view class="th">手机</view>
+          <view class="th">昵称</view>
+          <view class="th">性别</view>
+          <view class="th">生日</view>
+          <view class="th">注册时间</view>
+        </view>
+        
+        <!-- 表格数据行 -->
+        <block wx:for="{{listData}}" wx:key="Phone">
+          <view class="tr table-row {{index % 2 == 0 ? '' : 'bg-g'}}">
+            <view class="td phone-col">{{item.Phone}}</view>
+            <view class="td name-col">{{item.UserName}}</view>
+            <view class="td gender-col">
+              <text class="gender-badge {{item.Gender === '男' ? 'male' : 'female'}}">
+                {{item.Gender}}
+              </text>
+            </view>
+            <view class="td birthday-col">{{item.Birthday}}</view>
+            <view class="td time-col">{{item.RegisterTime}}</view>
+          </view>
+        </block>
+      </view>
+      
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{listData.length === 0 && !loading}}">
+        <text class="empty-icon">👥</text>
+        <text class="empty-text">暂无用户数据</text>
+        <text class="empty-hint">点击上方按钮刷新用户列表</text>
+      </view>
+      
+      <!-- 加载状态 -->
+      <view class="loading-state" wx:if="{{loading}}">
+        <text class="loading-icon">⏳</text>
+        <text class="loading-text">正在加载用户数据...</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

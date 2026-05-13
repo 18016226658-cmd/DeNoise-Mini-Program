@@ -1,0 +1,108 @@
+<!--pages/EditUserInfo/EditUserInfo.wxml-->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="title">编辑用户信息</text>
+    <text class="subtitle" wx:if="{{targetUser.Phone}}">手机号：{{targetUser.Phone}}</text>
+  </view>
+
+  <!-- 编辑表单 -->
+  <view class="form-section">
+    <!-- 用户名 -->
+    <view class="form-item">
+      <text class="form-label">用户名 *</text>
+      <input 
+        class="form-input" 
+        type="text" 
+        placeholder="请输入用户名" 
+        value="{{formData.UserName}}"
+        bindinput="onUserNameInput"
+        maxlength="20"
+      />
+    </view>
+
+    <!-- 性别 -->
+    <view class="form-item">
+      <text class="form-label">性别</text>
+      <picker 
+        mode="selector" 
+        range="{{genderOptions}}" 
+        value="{{genderOptions.indexOf(formData.Gender)}}"
+        bindchange="onGenderChange"
+      >
+        <view class="picker-view">
+          <text class="picker-text">{{formData.Gender}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 生日 -->
+    <view class="form-item">
+      <text class="form-label">生日</text>
+      <picker 
+        mode="date" 
+        value="{{formData.Birthday}}" 
+        start="1900-01-01"
+        end="{{maxDate}}"
+        bindchange="onBirthdayChange"
+      >
+        <view class="picker-view">
+          <text class="picker-text">{{formData.Birthday || '请选择生日'}}</text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 用户类型（仅管理员可见） -->
+    <view class="form-item" wx:if="{{canEditUserType}}">
+      <text class="form-label">用户类型</text>
+      <picker 
+        mode="selector" 
+        range="{{userTypeOptions}}" 
+        range-key="label"
+        value="{{selectedUserTypeIndex}}"
+        bindchange="onUserTypeChange"
+      >
+        <view class="picker-view">
+          <text class="picker-text">
+            {{userTypeOptions[selectedUserTypeIndex].label}}
+          </text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 分离次数配额（仅管理员可见） -->
+    <view class="form-item" wx:if="{{canEditQuota}}">
+      <text class="form-label">音频分离最大次数</text>
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="请输入最大次数" 
+        value="{{formData.MaxSepTimes}}"
+        bindinput="onMaxSepTimesInput"
+      />
+    </view>
+
+    <!-- 降噪次数配额（仅管理员可见） -->
+    <view class="form-item" wx:if="{{canEditQuota}}">
+      <text class="form-label">音频降噪最大次数</text>
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="请输入最大次数" 
+        value="{{formData.MaxNoiseTimes}}"
+        bindinput="onMaxNoiseTimesInput"
+      />
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="button-section">
+    <button class="submit-btn" bindtap="onSubmit" loading="{{loading}}">
+      保存
+    </button>
+  </view>
+</view>
+

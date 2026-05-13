@@ -1,0 +1,13 @@
+# 微信小程序忽略文件
+*.map
+*.LICENSE.txt
+**/demo/**
+*.gif
+*.htm
+*.html
+node_modules/
+.git/
+README.md
+OPTIMIZATION_NOTES.md
+*.log
+

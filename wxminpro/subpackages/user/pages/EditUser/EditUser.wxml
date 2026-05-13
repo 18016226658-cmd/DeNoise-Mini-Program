@@ -1,0 +1,43 @@
+
+<view class="contarner">
+  <view class="content">
+      <view class="title flex-def flex-cCenter flex-zBetween">
+    
+      <view>共有(<text>{{list.length}}</text>)个用户</view>
+      <text class="AA">类型</text>
+          <view class="getinput">
+              <view class="the_first">
+                <input type="number" bindinput="UserTypeInput" 	maxlength="1"  value="{{UserType}}" placeholder="输入(1-3)" style="border:1px solid gray;margin:40px;text-align: center;"></input>
+              </view>
+          </view>
+
+      <view class="editBtn" style="font-weight: bold;font-size:x-large;" bindtap="showSelIcon">{{iconStatu?'取消':'编辑'}}</view>
+    </view>
+    <view class="{{iconStatu?'margin-b':''}}">
+      <view bindtap="toggleSel" class="item flex-def flex-cCenter flex-zBetween" wx:for="{{list}}" wx:key="{{index}}" data-id='{{item.id}}'>
+        <view class="flex-def flex-cCenter flex-zBetween" data-id='{{item.id}}'>
+          <icon wx:if="{{iconStatu}}" type="success" size="20" color="{{item.selStatu?'#0f0':'#999'}}" data-id='{{item.id}}' />
+          <view data-id='{{item.id}}'>
+            <text data-id='{{item.id}}'>手机号：{{item.Phone}}-</text>
+            <text data-id='{{item.id}}'>用户名：{{item.UserName}}</text>
+          </view>
+        </view>
+        <view data-id='{{item.id}}'>   
+          <text class="wrongCount" data-id='{{item.id}}' wx:if="{{iconStatu}}" bind:tap="EditUserType">等级：{{item.UserType}}</text>
+          <text class="wrongCount" data-id='{{item.id}} '>密码：{{item.Password}}</text>
+        </view>
+        <!-- <view data-id='{{item.id}}'>
+          <text class="wrongCount" data-id='{{item.id}}'>出生：{{item.Birthday}}</text>
+          <text class="wrongCount" data-id='{{item.id}}'>性别：{{item.Gender}}</text>
+           <text class="wrongText" data-id='{{item.id}} '>等级：{{item.UserType}}</text>
+        </view> -->
+
+
+      </view>
+    </view>
+  </view>
+  <view class="footer" wx:if="{{iconStatu}}" bindtap="SaveUserType">
+    更新注册用户类型
+  </view>
+</view>
+

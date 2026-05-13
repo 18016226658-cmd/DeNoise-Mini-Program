@@ -1,0 +1,117 @@
+<!--pages/chatGPT/chatGPT.wxml-->
+<view class="page-container">
+  <!-- 录音时长显示 -->
+  <view class="record-indicator" wx:if="{{recording}}">
+    <view class="recording-dot"></view>
+    <text class="record-time">{{record_duration}} 秒</text>
+  </view>
+
+  <!-- 聊天消息区域 -->
+  <scroll-view 
+    class="chat-container" 
+    scroll-y="true" 
+    scroll-into-view="{{toView}}" 
+    scroll-with-animation="true"
+    enable-back-to-top="true">
+    
+    <!-- 空状态提示 -->
+    <view class="empty-chat" wx:if="{{chatList.length === 0}}">
+      <text class="empty-icon">💬</text>
+      <text class="empty-text">开始与 {{MxName}} 对话吧</text>
+      <text class="empty-hint">输入问题或使用语音输入</text>
+    </view>
+
+    <!-- 聊天消息列表 -->
+    <block wx:for="{{chatList}}" wx:key="index">
+      <!-- 机器人消息（左侧） -->
+      <view class="message-item bot-message" wx:if="{{item.userId == '1002'}}" id="message-{{index}}">
+        <view class="message-avatar">
+          <image class="avatar-img" src="/static/image/header.png" mode="aspectFill" />
+          <text class="avatar-badge">AI</text>
+        </view>
+        <view class="message-content">
+          <view class="message-header">
+            <text class="message-name">{{item.MxName || 'AI助手'}}</text>
+          </view>
+          <view class="message-bubble bot-bubble">
+            <text class="message-text">{{item.Answer}}</text>
+          </view>
+          <view class="message-time">{{item.time || ''}}</view>
+        </view>
+      </view>
+
+      <!-- 用户消息（右侧） -->
+      <view class="message-item user-message" wx:else id="message-{{index}}">
+        <view class="message-content">
+          <view class="message-header user-header">
+            <text class="message-name">我</text>
+          </view>
+          <view class="message-bubble user-bubble">
+            <text class="message-text">{{item.Question}}</text>
+          </view>
+          <view class="message-time user-time">{{item.time || ''}}</view>
+        </view>
+        <view class="message-avatar">
+          <image class="avatar-img" src="{{item.FaceImg || '/static/image/header.png'}}" mode="aspectFill" />
+        </view>
+      </view>
+    </block>
+
+    <!-- 滚动到底部锚点 -->
+    <view id="toBottom" class="scroll-anchor"></view>
+  </scroll-view>
+
+  <!-- 底部输入区域 -->
+  <view class="input-bar">
+    <!-- 左侧功能按钮区 -->
+    <view class="input-left">
+      <!-- 录音按钮 -->
+      <view class="action-btn record-btn {{recording ? 'recording' : ''}}" bindtap="Record">
+        <text class="btn-icon">{{recording ? '⏹' : '🎤'}}</text>
+      </view>
+      
+      <!-- 播放按钮 -->
+      <view class="action-btn play-btn" bindtap="PlayorStop" wx:if="{{RecordFilePath}}">
+        <text class="btn-icon">{{playing ? '⏸' : '▶'}}</text>
+      </view>
+      
+      <!-- 语音转文字按钮 -->
+      <view class="action-btn convert-btn" bindtap="RecToText" wx:if="{{RecordFilePath}}">
+        <text class="btn-icon">📝</text>
+      </view>
+    </view>
+
+    <!-- 中间输入框 -->
+    <view class="input-center">
+      <input 
+        class="chat-input" 
+        placeholder="{{plcaceHolder}}" 
+        bindinput="getInputValue" 
+        value="{{inputValue}}"
+        confirm-type="send"
+        bindconfirm="publishChat" />
+    </view>
+
+    <!-- 右侧发送和模型切换 -->
+    <view class="input-right">
+      <!-- 发送按钮 -->
+      <view class="send-btn {{inputValue ? 'active' : ''}}" bindtap="publishChat">
+        <text class="send-icon">➤</text>
+      </view>
+      
+      <!-- 模型切换 -->
+      <view class="model-switch">
+        <view 
+          class="model-btn {{MxType === 1 ? 'active' : ''}}" 
+          bindtap="switchToWenxin">
+          <text class="model-text">文心</text>
+        </view>
+        <view 
+          class="model-btn {{MxType === 2 ? 'active' : ''}}" 
+          bindtap="switchToGPT">
+          <text class="model-text">GPT</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

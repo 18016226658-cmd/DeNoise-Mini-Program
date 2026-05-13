@@ -1,0 +1,259 @@
+/* pages/CreateDialo/createDialo.wxss */
+
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* 头部区域 */
+.header {
+  text-align: center;
+  padding: 40rpx 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* 通用卡片区域 */
+.section {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 操作区域 */
+.action-section {
+  text-align: center;
+}
+
+.generate-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  padding: 25rpx 0;
+  border-radius: 15rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15rpx;
+  box-shadow: 0 4rpx 15rpx rgba(102, 126, 234, 0.3);
+  transition: all 0.3s;
+}
+
+.generate-btn::after {
+  border: none;
+}
+
+.generate-btn[disabled] {
+  opacity: 0.6;
+  background: linear-gradient(135deg, #cccccc 0%, #999999 100%);
+}
+
+.btn-icon {
+  font-size: 36rpx;
+}
+
+.data-info {
+  margin-top: 20rpx;
+  padding: 15rpx;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 10rpx;
+}
+
+.info-text {
+  font-size: 26rpx;
+  color: #666666;
+  font-weight: 500;
+}
+
+/* 表格区域 */
+.table-section {
+  padding: 0;
+  overflow: hidden;
+}
+
+.table-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0;
+  border-radius: 20rpx 20rpx 0 0;
+}
+
+.table-header-row {
+  display: flex;
+  width: 100%;
+}
+
+.th {
+  flex: 1;
+  padding: 20rpx 10rpx;
+  text-align: center;
+  color: #ffffff;
+  font-size: 24rpx;
+  font-weight: bold;
+  border-right: 1rpx solid rgba(255, 255, 255, 0.2);
+  word-break: break-all;
+  min-width: 0;
+}
+
+.th:last-child {
+  border-right: none;
+}
+
+/* 表格滚动区域 */
+.table-scroll {
+  max-height: 800rpx;
+}
+
+.table-body {
+  width: 100%;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  min-height: 80rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.table-row.even {
+  background-color: #ffffff;
+}
+
+.table-row.odd {
+  background-color: #f8f9fa;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:active {
+  background-color: #e9ecef;
+}
+
+.td {
+  flex: 1;
+  padding: 20rpx 10rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #333333;
+  word-break: break-all;
+  min-width: 0;
+  line-height: 1.5;
+  border-right: 1rpx solid #f0f0f0;
+}
+
+.td:last-child {
+  border-right: none;
+}
+
+/* 特殊列样式 */
+.question-cell {
+  color: #667eea;
+  font-weight: 500;
+}
+
+.answer-cell {
+  color: #11998e;
+}
+
+.name-cell {
+  color: #f5576c;
+  font-weight: 500;
+}
+
+.gender-cell {
+  color: #764ba2;
+}
+
+.birthday-cell {
+  color: #f093fb;
+}
+
+.age-cell {
+  color: #4facfe;
+  font-weight: 500;
+}
+
+.time-cell {
+  color: #43e97b;
+  font-size: 22rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 150rpx 40rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  display: block;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #666666;
+  margin-bottom: 15rpx;
+  font-weight: bold;
+  display: block;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999999;
+  display: block;
+}
+
+/* 加载状态 */
+.loading-state {
+  text-align: center;
+  padding: 150rpx 40rpx;
+}
+
+.loading-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 30rpx;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #666666;
+  display: block;
+}

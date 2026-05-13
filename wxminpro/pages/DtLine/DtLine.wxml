@@ -1,0 +1,74 @@
+<!--pages/DtLine/DtLine.wxml-->
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">数据分析</text>
+    <text class="subtitle">ChatGPT聊天记录可视化分析</text>
+  </view>
+
+  <!-- 图表类型选择 -->
+  <view class="section chart-types">
+    <view class="types-title">选择分析维度</view>
+    <view class="types-grid">
+      <view 
+        class="type-item {{index==1?'active':''}}" 
+        bindtap="lineA">
+        <text class="type-icon">📅</text>
+        <text class="type-text">日期</text>
+      </view>
+      <view 
+        class="type-item {{index==6?'active':''}}" 
+        bindtap="pie">
+        <text class="type-icon">📊</text>
+        <text class="type-text">周次</text>
+      </view>
+      <view 
+        class="type-item {{index==3?'active':''}}" 
+        bindtap="lineC">
+        <text class="type-icon">⏰</text>
+        <text class="type-text">时间</text>
+      </view>
+      <view 
+        class="type-item {{index==4?'active':''}}" 
+        bindtap="barA">
+        <text class="type-icon">👥</text>
+        <text class="type-text">性别</text>
+      </view>
+      <view 
+        class="type-item {{index==5?'active':''}}" 
+        wx:if="{{UserType<3}}" 
+        bindtap="barB">
+        <text class="type-icon">🎂</text>
+        <text class="type-text">年龄</text>
+      </view>
+      <view 
+        class="type-item {{index==2?'active':''}}" 
+        wx:if="{{UserType<3}}" 
+        bindtap="lineB">
+        <text class="type-icon">💝</text>
+        <text class="type-text">情感</text>
+      </view>
+      <view 
+        class="type-item {{index==7?'active':''}}" 
+        wx:if="{{UserType<3}}" 
+        bindtap="myWordCloud">
+        <text class="type-icon">☁️</text>
+        <text class="type-text">词云</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图表展示区域 -->
+  <view class="section chart-section">
+    <view class="chart-container">
+      <ec-canvas id="echarts2" canvas-id="echarts2" ec="{{ec2}}"></ec-canvas>
+    </view>
+    
+    <!-- 空状态提示 -->
+    <view class="empty-chart" wx:if="{{index==0}}">
+      <text class="empty-icon">📈</text>
+      <text class="empty-text">请选择上方的分析维度</text>
+      <text class="empty-hint">点击按钮查看对应的数据可视化图表</text>
+    </view>
+  </view>
+</view>

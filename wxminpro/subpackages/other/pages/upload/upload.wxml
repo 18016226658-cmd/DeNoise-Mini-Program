@@ -1,0 +1,8 @@
+<!--pages/upload/upload.wxml-->
+<text>pages/upload/upload.wxml</text>
+<view>图片选择</view>
+<view class="container">
+   <image wx:for="{{imageList}}" src="{{item}}" style="height: 200rpx;width: 200rpx;border: 4;padding: 4rpx;"></image>
+</view>
+<button bind:tap="uploadimage" >请选择要上传的图片</button>
+<!-- <image wx:for="{{imageList}}" src="{{item}}" style="height: 200rpx;width: 200rpx;border: 4;padding: 4rpx;"></image> -->

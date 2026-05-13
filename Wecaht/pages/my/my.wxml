@@ -1,0 +1,107 @@
+<!--pages/my/my.wxml-->
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="card user-card">
+    <view class="user-avatar" bindtap="changeAvatar">
+      <image wx:if="{{userAvatar}}" class="avatar-image" src="{{userAvatar}}" mode="aspectFill"></image>
+      <text wx:else class="avatar-icon">👤</text>
+      <view class="avatar-mask">
+        <text class="avatar-edit">📷</text>
+      </view>
+    </view>
+    <view class="user-details">
+      <text class="user-name">{{username}}</text>
+      <text class="user-desc">{{userLevelName}}</text>
+    </view>
+  </view>
+
+  <!-- 权限信息 -->
+  <view class="card permission-card">
+    <view class="permission-title">权限信息</view>
+    <view class="permission-item">
+      <text class="permission-label">最大分解位数</text>
+      <text class="permission-value">{{maxDigits}}位</text>
+    </view>
+    <view class="permission-item">
+      <text class="permission-label">本地分解支持</text>
+      <text class="permission-value">✓ 支持</text>
+    </view>
+    <view class="permission-item">
+      <text class="permission-label">云端协同计算</text>
+      <text class="permission-value">{{canCloudCompute ? '✓ 支持' : '✗ 不支持'}}</text>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <!-- 管理员功能 -->
+    <view class="menu-item card" wx:if="{{isAdmin}}" bindtap="manageUsers">
+      <view class="menu-icon">👥</view>
+      <view class="menu-content">
+        <text class="menu-title">用户管理</text>
+        <text class="menu-desc">查看和管理所有用户</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item card" bindtap="viewAbout">
+      <view class="menu-icon">ℹ️</view>
+      <view class="menu-content">
+        <text class="menu-title">关于系统</text>
+        <text class="menu-desc">了解系统信息</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item card" bindtap="viewHelp">
+      <view class="menu-icon">❓</view>
+      <view class="menu-content">
+        <text class="menu-title">使用帮助</text>
+        <text class="menu-desc">查看使用说明</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item card" bindtap="exportUserData">
+      <view class="menu-icon">💾</view>
+      <view class="menu-content">
+        <text class="menu-title">导出用户数据</text>
+        <text class="menu-desc">查看所有用户数据（db格式）</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item card" bindtap="logout">
+      <view class="menu-icon">🚪</view>
+      <view class="menu-content">
+        <text class="menu-title">退出登录</text>
+        <text class="menu-desc">安全退出当前账户</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 用户等级说明 -->
+  <view class="card level-info-card">
+    <view class="level-title">用户等级说明</view>
+    <view class="level-list">
+      <view class="level-item">
+        <text class="level-name">普通用户</text>
+        <text class="level-desc">最大50位整数分解</text>
+      </view>
+      <view class="level-item">
+        <text class="level-name">VIP用户</text>
+        <text class="level-desc">最大80位整数分解</text>
+      </view>
+      <view class="level-item">
+        <text class="level-name">SVIP用户</text>
+        <text class="level-desc">最大120位整数分解</text>
+      </view>
+      <view class="level-item">
+        <text class="level-name">管理员</text>
+        <text class="level-desc">最大200位整数分解 + 云端计算</text>
+      </view>
+    </view>
+  </view>
+</view>
+

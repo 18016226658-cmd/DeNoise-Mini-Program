@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/splitter/splitter",
+    "pages/history/history",
+    "pages/my/my",
+    "pages/admin/admin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFB6C1",
+    "navigationBarTitleText": "大整数分解系统",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF0F5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF69B4",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_select.png"
+      },
+      {
+        "pagePath": "pages/splitter/splitter",
+        "text": "分解",
+        "iconPath": "images/splitter.png",
+        "selectedIconPath": "images/splitter_select.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "images/history.png",
+        "selectedIconPath": "images/history_select.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_select.png"
+      }
+    ]
+  },
+  "workers": "workers",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
+

@@ -1,0 +1,66 @@
+<!--pages/CreateDialo/createDialo.wxml-->
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">数据管理</text>
+    <text class="subtitle">聊天数据集管理</text>
+  </view>
+
+  <!-- 操作区域 -->
+  <view class="section action-section">
+    <button class="generate-btn" bindtap="CreateDialo" disabled="{{loading}}">
+      <text class="btn-icon">📊</text>
+      <text>{{loading ? '生成中...' : '生成聊天数据集'}}</text>
+    </button>
+    <view class="data-info" wx:if="{{listData.length > 0}}">
+      <text class="info-text">共 {{listData.length}} 条记录</text>
+    </view>
+  </view>
+
+  <!-- 数据表格区域 -->
+  <view class="section table-section">
+    <!-- 表格头部 -->
+    <view class="table-header">
+      <view class="table-header-row">
+        <view class="th">问题</view>
+        <view class="th">答案</view>
+        <view class="th">用户名</view>
+        <view class="th">性别</view>
+        <view class="th">生日</view>
+        <view class="th">年龄</view>
+        <view class="th">时间</view>
+      </view>
+    </view>
+
+    <!-- 表格内容 -->
+    <scroll-view class="table-scroll" scroll-y="true" wx:if="{{listData.length > 0}}">
+      <view class="table-body">
+        <view 
+          class="table-row {{index % 2 == 0 ? 'even' : 'odd'}}" 
+          wx:for="{{listData}}" 
+          wx:key="index">
+          <view class="td question-cell">{{item.Question || '-'}}</view>
+          <view class="td answer-cell">{{item.Answer || '-'}}</view>
+          <view class="td name-cell">{{item.UserName || '-'}}</view>
+          <view class="td gender-cell">{{item.Gender || '-'}}</view>
+          <view class="td birthday-cell">{{item.Birthday || '-'}}</view>
+          <view class="td age-cell">{{item.NL || '-'}}</view>
+          <view class="td time-cell">{{item.ChatTime || '-'}}</view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{listData.length === 0 && !loading}}">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">暂无数据</text>
+      <text class="empty-hint">点击上方按钮生成聊天数据集</text>
+    </view>
+
+    <!-- 加载状态 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <text class="loading-icon">⏳</text>
+      <text class="loading-text">正在生成数据集...</text>
+    </view>
+  </view>
+</view>

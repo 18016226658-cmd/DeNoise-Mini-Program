@@ -1,0 +1,51 @@
+package com.example;
+import java.util.Date;
+public class JpypeDemo {
+    public static String sayHello(String user){ //注意！作为被 python调用的接口函数，需要是静态的，否则 python 端会报错
+        return "Hello" + user;
+    }
+    public static String sayNow(String user){ //注意！作为被 python调用的接口函数，需要是静态的，否则 python 端会报错
+        Date date = new Date();
+        System.out.println("今天是：" +date);
+        return "今天是：" +date;
+    }
+    public static int Add(int a, int b){ //注意！作为被 python 调用的接口函数，需要是静态的，否则 python 端会报错
+        return a + b;
+    }
+    public static int Sub(int a, int b){ return a - b; }
+    public static int Mul(int a, int b){ return a * b; }
+    public static int Div(int a, int b) {
+        if (b != 0)
+            return a / b;
+        else {
+            System.out.println("分母不能为0 ！");
+            return -999;
+        }
+    }
+    public static int Rem(int a, int b) {
+        if (b != 0)
+            return a % b;
+        else {
+            System.out.println("分母不能为0 ！");
+            return -999;
+        }
+    }
+    public static long Fac(int n){ //注意！作为被 python调用的接口函数，需要是静态的，否则 python 端会报错
+        long p=1 ,k;
+        if (n<=20) {
+            for ( k=1;k<=n;k++){
+                p*=k;
+            }
+            return p;
+        }
+        else
+        {
+            System.out.println("参数1 不能大于20！");
+            return -999;
+        }
+
+    }
+
+    public static void main(String[] args){
+    }
+}

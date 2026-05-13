@@ -1,0 +1,86 @@
+<!--pages/chat/chat.wxml-->
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">用户管理</text>
+    <text class="subtitle">个人信息与账户管理</text>
+  </view>
+
+  <!-- 用户信息卡片 -->
+  <view class="section user-card" wx:if="{{UserName}}">
+    <view class="user-header">
+      <image class="user-avatar" src="{{FaceImg || '/static/image/header.png'}}" mode="aspectFill"></image>
+      <view class="user-basic">
+        <text class="user-name">{{UserName}}</text>
+        <text class="user-type">{{UserTypeText}}</text>
+      </view>
+    </view>
+    
+    <view class="user-info">
+      <view class="info-title">
+        <text class="title-icon">📋</text>
+        <text class="title-text">当前用户信息</text>
+      </view>
+      
+      <view class="info-grid">
+        <view class="info-item">
+          <view class="info-icon">🆔</view>
+          <view class="info-content">
+            <text class="info-label">用户ID</text>
+            <text class="info-value">{{UserID}}</text>
+          </view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-icon">⚧️</view>
+          <view class="info-content">
+            <text class="info-label">性别</text>
+            <text class="info-value">{{Gender}}</text>
+          </view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-icon">🎂</view>
+          <view class="info-content">
+            <text class="info-label">生日</text>
+            <text class="info-value">{{Birthday}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单区域 -->
+  <view class="section menu-section">
+    <view class="section-header">
+      <text class="section-icon">⚙️</text>
+      <text class="section-title">管理功能</text>
+    </view>
+    
+    <view class="menu-grid">
+      <view class="menu-item" bindtap="DispUser">
+        <view class="menu-icon">👥</view>
+        <text class="menu-text">浏览用户</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" wx:if="{{UserType<2}}" bindtap="EditUserType">
+        <view class="menu-icon">✏️</view>
+        <text class="menu-text">修改用户类型</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" wx:if="{{UserType<2}}" bindtap="DelUser">
+        <view class="menu-icon">🗑️</view>
+        <text class="menu-text">删除用户</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      
+      <view class="menu-item" wx:if="{{UserType<2}}" bindtap="EditCsb">
+        <view class="menu-icon">🤖</view>
+        <text class="menu-text">修改仿真模型</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+  </view>
+</view>

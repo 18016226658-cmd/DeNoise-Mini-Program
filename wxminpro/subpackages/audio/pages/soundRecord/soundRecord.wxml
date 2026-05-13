@@ -1,0 +1,84 @@
+<!--pages/soundRecord/soundRecord.wxml-->
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">音频录制播放器</text>
+    <text class="subtitle">录音、转文字、AI对话</text>
+  </view>
+
+  <!-- 录音区域 -->
+  <view class="section record-section">
+    <view class="record-status" wx:if="{{record_type === 0}}">
+      <text class="status-text">点击下方按钮开始录音</text>
+    </view>
+    <view class="record-status recording" wx:if="{{record_type === 1}}">
+      <text class="status-text recording-text">正在录音中...</text>
+    </view>
+    <view class="record-status completed" wx:if="{{record_type === 2}}">
+      <text class="status-text">录音完成</text>
+    </view>
+
+    <!-- 录音按钮 -->
+    <view class="record-button-wrapper">
+      <view class="record-button {{record_type === 1 ? 'recording' : ''}}" bindtap="Record">
+        <view class="record-button-inner">
+          <text class="record-icon">{{record_type === 1 ? '⏹' : '🎤'}}</text>
+        </view>
+        <view class="record-ripple" wx:if="{{record_type === 1}}"></view>
+      </view>
+    </view>
+
+    <!-- 录音时长显示 -->
+    <view class="time-display" wx:if="{{record_type > 0}}">
+      <text class="time-text">{{record_current}}/{{record_duration}}</text>
+    </view>
+
+    <!-- 播放进度条 -->
+    <view class="progress-section" wx:if="{{record_type === 2}}">
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{record_percent}}%"></view>
+      </view>
+    </view>
+
+    <!-- 播放控制 -->
+    <view class="play-controls" wx:if="{{record_type === 2}}">
+      <button class="play-btn" bindtap="PlayorStop">
+        <text class="play-icon">{{playing ? '⏸' : '▶'}}</text>
+        <text>{{playing ? '暂停' : '播放'}}</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 语音转文本区域 -->
+  <view class="section text-section" wx:if="{{record_type === 2}}">
+    <view class="section-header">
+      <text class="section-icon">📝</text>
+      <text class="section-title">语音转文本</text>
+      <button class="action-icon-btn" bindtap="RecToText">
+        <text class="icon">🚀</text>
+      </button>
+    </view>
+    <view class="text-content">
+      <text class="text-placeholder" wx:if="{{!RecText}}">点击上方按钮将录音转换为文字</text>
+      <text class="text-result" wx:else>{{RecText}}</text>
+    </view>
+  </view>
+
+  <!-- ChatGPT 回答区域 -->
+  <view class="section chat-section" wx:if="{{RecText}}">
+    <view class="section-header">
+      <text class="section-icon">🤖</text>
+      <text class="section-title">ChatGPT 回答</text>
+    </view>
+    <view class="text-content">
+      <text class="text-placeholder" wx:if="{{!GPTAnswer}}">正在思考中...</text>
+      <text class="text-result" wx:else>{{GPTAnswer}}</text>
+    </view>
+  </view>
+
+  <!-- 空状态提示 -->
+  <view class="empty-state" wx:if="{{record_type === 0}}">
+    <text class="empty-icon">🎙️</text>
+    <text class="empty-text">点击录音按钮开始录制</text>
+  </view>
+</view>

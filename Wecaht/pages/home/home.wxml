@@ -1,0 +1,72 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+  <!-- 轮播图 -->
+  <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{500}}" circular="{{true}}">
+    <swiper-item>
+      <image class="banner-image" src="/images/banner/banner1.png" mode="aspectFill"></image>
+    </swiper-item>
+    <swiper-item>
+      <image class="banner-image" src="/images/banner/banner2.png" mode="aspectFill"></image>
+    </swiper-item>
+    <swiper-item>
+      <image class="banner-image" src="/images/banner/banner3.png" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- 功能介绍卡片 -->
+  <view class="card intro-card">
+    <view class="intro-title">
+      <text class="icon">✨</text>
+      <text>系统介绍</text>
+    </view>
+    <view class="intro-content">
+      <text>基于微信小程序的大整数分解系统，支持200位以内整数的本地分解，提供实时进度展示和结果可视化。</text>
+    </view>
+  </view>
+
+  <!-- 功能特性 -->
+  <view class="features">
+    <view class="feature-item">
+      <view class="feature-icon">🔢</view>
+      <view class="feature-text">
+        <text class="feature-title">大整数分解</text>
+        <text class="feature-desc">支持最多200位整数分解</text>
+      </view>
+    </view>
+    <view class="feature-item">
+      <view class="feature-icon">⚡</view>
+      <view class="feature-text">
+        <text class="feature-title">快速计算</text>
+        <text class="feature-desc">优化算法，30秒内完成</text>
+      </view>
+    </view>
+    <view class="feature-item">
+      <view class="feature-icon">📊</view>
+      <view class="feature-text">
+        <text class="feature-title">实时进度</text>
+        <text class="feature-desc">可视化分解过程</text>
+      </view>
+    </view>
+    <view class="feature-item">
+      <view class="feature-icon">📝</view>
+      <view class="feature-text">
+        <text class="feature-title">历史记录</text>
+        <text class="feature-desc">保存分解历史</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快速开始按钮 -->
+  <view class="quick-start">
+    <button class="btn-primary" bindtap="goToSplitter">开始分解</button>
+  </view>
+
+  <!-- 用户信息 -->
+  <view class="card user-card">
+    <view class="user-info">
+      <text class="user-level">当前等级：{{userLevelName}}</text>
+      <text class="user-limit">最大分解位数：{{maxDigits}}位</text>
+    </view>
+  </view>
+</view>
+

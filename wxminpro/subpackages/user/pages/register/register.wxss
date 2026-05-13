@@ -1,0 +1,47 @@
+/* pages/register/register.wxss */
+.box{
+  position:absolute;
+  left: 35px;
+  top: 50px;
+  width: 250px;
+  height: 250px;
+}
+.title text{
+  margin-left: 60px;
+}
+input{
+  margin-top: 40px;
+}
+button{
+  margin-top: 40px;
+  background-color: pink;
+}
+
+.register{
+    /* display:flex; */
+    display:inline-block;
+    flex-direction:row;
+}
+
+/* 验证码输入框样式 */
+.register.code-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.get-code-btn {
+  margin-left: 20rpx;
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+  background-color: #44ADFB;
+  color: white;
+  border-radius: 8rpx;
+  border: none;
+  min-width: 140rpx;
+}
+
+.get-code-btn[disabled] {
+  background-color: #ccc;
+  color: #999;
+}

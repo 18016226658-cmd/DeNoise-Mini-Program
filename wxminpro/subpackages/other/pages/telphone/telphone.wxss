@@ -1,0 +1,254 @@
+/* pages/telphone/telphone.wxss */
+
+.page-container {
+  padding: 20rpx;
+  background: linear-gradient(180deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+/* 头部区域 */
+.header {
+  text-align: center;
+  padding: 40rpx 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* 通用卡片区域 */
+.section {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.section-icon {
+  font-size: 36rpx;
+  margin-right: 15rpx;
+  color: #667eea;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* 表单区域 */
+.form-section {
+  padding: 30rpx;
+}
+
+.input-group {
+  margin-bottom: 30rpx;
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.label-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+  color: #667eea;
+}
+
+.label-text {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 25rpx 30rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 15rpx;
+  font-size: 30rpx;
+  color: #333;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 1rpx 5rpx rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 4rpx rgba(102, 126, 234, 0.2);
+  background-color: #ffffff;
+}
+
+/* 验证码输入区域 */
+.code-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.code-input {
+  flex: 1;
+}
+
+.get-code-btn {
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 26rpx;
+  border-radius: 15rpx;
+  border: none;
+  box-shadow: 0 2rpx 8rpx rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.get-code-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 1rpx 5rpx rgba(102, 126, 234, 0.5);
+}
+
+.get-code-btn::after {
+  border: none;
+}
+
+.get-code-btn[disabled] {
+  background: #cccccc;
+  color: #999999;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* 登录按钮 */
+.login-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  padding: 25rpx 0;
+  border-radius: 50rpx;
+  border: none;
+  box-shadow: 0 4rpx 15rpx rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  margin-top: 20rpx;
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(102, 126, 234, 0.6);
+}
+
+.login-btn::after {
+  border: none;
+}
+
+.login-btn[disabled] {
+  background: #cccccc;
+  color: #999999;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* 结果显示区域 */
+.result-section {
+  padding: 30rpx;
+}
+
+.data-display {
+  margin-bottom: 30rpx;
+  padding: 20rpx;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 15rpx;
+  border-left: 6rpx solid #667eea;
+}
+
+.data-display:last-child {
+  margin-bottom: 0;
+}
+
+.data-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 15rpx;
+}
+
+.data-content {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 1.6;
+}
+
+.data-item {
+  padding: 10rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.data-item:last-child {
+  border-bottom: none;
+}
+
+.data-key {
+  color: #333333;
+  word-break: break-all;
+}
+
+/* 关键数据展示 */
+.key-data {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.key-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  box-shadow: 0 1rpx 5rpx rgba(0, 0, 0, 0.05);
+}
+
+.key-label {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #666666;
+  margin-right: 15rpx;
+  min-width: 120rpx;
+}
+
+.key-value {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+  flex: 1;
+  word-break: break-all;
+}

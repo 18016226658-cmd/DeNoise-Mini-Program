@@ -1,0 +1,65 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">音频降噪系统</text>
+    <text class="subtitle">多功能音频处理平台</text>
+  </view>
+  
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-title">功能菜单</view>
+    <view class="menu-grid">
+      <!-- 音频处理功能 -->
+      <view class="menu-item" bindtap="navigateToDeNoise">
+        <view class="menu-icon">🎵</view>
+        <text class="menu-text">音频降噪</text>
+      </view>
+      <!-- 音频分离功能（开发中，暂不可用） -->
+      <view class="menu-item disabled">
+        <view class="menu-icon">🎼</view>
+        <text class="menu-text">音频分离（开发中）</text>
+      </view>
+      <view class="menu-item" bindtap="navigateToSoundRecord">
+        <view class="menu-icon">🎤</view>
+        <text class="menu-text">录音功能</text>
+      </view>
+      <view class="menu-item" bindtap="navigateToHistory">
+        <view class="menu-icon">📋</view>
+        <text class="menu-text">历史记录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 系统介绍 -->
+  <view class="content">
+    <view class="section">
+      <view class="section-title">系统功能介绍</view>
+      <view class="item">（1）用户注册与登录：支持用户ID、用户名、出生日期、头像、性别等信息管理</view>
+      <view class="item">（2）音频降噪处理：基于巴特沃斯滤波器算法进行高质量降噪</view>
+      <view class="item">（3）在线对比试听：支持降噪前后音频文件的在线对比播放</view>
+      <view class="item">（4）文件上传下载：支持音频文件上传和处理后文件下载</view>
+      <view class="item">（5）使用历史记录：显示用户音频处理的使用历史</view>
+      <view class="item">（6）数据可视化：对音频处理数据进行可视化分析</view>
+      <view class="item">（7）用户管理：用户信息维护、使用次数统计等功能</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">应用场景</view>
+      <view class="item">• 在线教育：提升教学录音质量</view>
+      <view class="item">• 自媒体创作：改善音频素材质量</view>
+      <view class="item">• 会议记录：优化会议录音清晰度</view>
+      <view class="item">• 日常录音：增强日常录音效果</view>
+      <view class="item">• 音乐制作：音频降噪处理</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">技术特点</view>
+      <view class="item">• 基于巴特沃斯滤波器的降噪算法</view>
+      <view class="item">• 支持多种音频格式（WAV、MP3、OGG等）</view>
+      <view class="item">• 实时在线试听对比</view>
+      <view class="item">• 数据可视化分析</view>
+    </view>
+  </view>
+
+  <!-- 注销功能已移动到用户信息页，这里不再显示 -->
+</view>

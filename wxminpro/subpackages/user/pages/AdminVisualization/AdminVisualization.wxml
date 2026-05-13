@@ -1,0 +1,29 @@
+<!--pages/AdminVisualization/AdminVisualization.wxml-->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="title">数据可视化</text>
+    <text class="subtitle">管理员专用</text>
+  </view>
+
+  <!-- 日期-降噪次数（折线图） -->
+  <view class="chart-section">
+    <ec-canvas id="date-chart" canvas-id="date-chart" ec="{{ecDate}}" class="chart"></ec-canvas>
+  </view>
+
+  <!-- 周次-降噪次数（饼图） -->
+  <view class="chart-section">
+    <ec-canvas id="week-chart" canvas-id="week-chart" ec="{{ecWeek}}" class="chart"></ec-canvas>
+  </view>
+
+  <!-- 一天中时间-降噪次数（折线图） -->
+  <view class="chart-section">
+    <ec-canvas id="time-chart" canvas-id="time-chart" ec="{{ecTime}}" class="chart"></ec-canvas>
+  </view>
+
+  <!-- 活跃用户-降噪次数（柱状图） -->
+  <view class="chart-section">
+    <ec-canvas id="user-chart" canvas-id="user-chart" ec="{{ecUser}}" class="chart"></ec-canvas>
+  </view>
+</view>
+

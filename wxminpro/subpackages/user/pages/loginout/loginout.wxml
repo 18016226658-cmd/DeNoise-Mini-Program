@@ -1,0 +1,6 @@
+<!--pages/loginout/loginout.wxml-->
+<!-- <text>pages/loginout/loginout.wxml</text> -->
+<view class="back-button" bindtap="goBack">返回</view>
+<view class="container">
+  <button class="logout-btn" bindtap="logout">注销账号</button>
+</view>

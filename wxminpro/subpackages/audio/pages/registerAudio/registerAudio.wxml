@@ -1,0 +1,140 @@
+<!--pages/registerAudio/registerAudio.wxml-->
+<view class="page-container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">音频降噪系统</text>
+    <text class="subtitle">创建新账户</text>
+  </view>
+
+  <!-- 登录/注册切换 -->
+  <view class="section tab-section">
+    <view class="tab-container">
+      <navigator class="tab-item" url="/subpackages/audio/pages/LoginAudio/LoginAudio">
+        <text class="tab-text">登录</text>
+      </navigator>
+      <view class="tab-item active">
+        <text class="tab-text">注册</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 注册表单区域 -->
+  <view class="section form-section">
+    <!-- 手机号输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">📱</text>
+        <text class="label-text">手机号</text>
+      </view>
+      <input 
+        class="custom-input" 
+        type="number" 
+        maxlength="11" 
+        bindinput="PhoneInput" 
+        placeholder="请输入11位手机号" 
+        value="{{Phone}}"
+        confirm-type="next" />
+    </view>
+
+    <!-- 用户名输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">👤</text>
+        <text class="label-text">用户名</text>
+      </view>
+      <input 
+        class="custom-input" 
+        type="text" 
+        bindinput="UsernameInput" 
+        placeholder="请输入用户昵称" 
+        value="{{UserName}}"
+        confirm-type="next" />
+    </view>
+
+    <!-- 性别选择 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">⚧️</text>
+        <text class="label-text">性别</text>
+      </view>
+      <picker 
+        mode="selector" 
+        range="{{genderArray}}" 
+        value="{{genderIndex}}" 
+        bindchange="GenderChange">
+        <view class="picker-view">
+          <text class="picker-text {{Gender ? '' : 'placeholder'}}">
+            {{Gender || '请选择性别'}}
+          </text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 出生年月日选择 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">🎂</text>
+        <text class="label-text">出生年月</text>
+      </view>
+      <picker 
+        mode="date" 
+        value="{{Birthday}}" 
+        start="1900-01-01" 
+        end="{{maxDate}}"
+        bindchange="BirthdayChange">
+        <view class="picker-view">
+          <text class="picker-text {{Birthday ? '' : 'placeholder'}}">
+            {{Birthday || '请选择出生日期'}}
+          </text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 密码输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">🔒</text>
+        <text class="label-text">密码</text>
+      </view>
+      <input 
+        class="custom-input" 
+        type="password" 
+        bindinput="PasswordInput" 
+        placeholder="请设置密码" 
+        value="{{Password}}"
+        confirm-type="done" />
+    </view>
+
+    <!-- 头像选择 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">🖼️</text>
+        <text class="label-text">头像</text>
+      </view>
+      <view class="avatar-section">
+        <button class="select-avatar-btn" bindtap="SelectImgFile">
+          <text>选择头像文件</text>
+        </button>
+        <image 
+          class="avatar-preview" 
+          src="{{Path || '/static/image/header.png'}}" 
+          mode="aspectFill"></image>
+      </view>
+    </view>
+
+    <!-- 注册按钮 -->
+    <button class="register-btn" bindtap="Post" disabled="{{jin || registering}}">
+      <text wx:if="{{!registering}}">立即注册</text>
+      <text wx:else>注册中...</text>
+    </button>
+
+    <!-- 注册结果提示 -->
+    <view class="register-result" wx:if="{{RegisterAnswer}}">
+      <text class="result-text {{RegisterAnswer.indexOf('成功') !== -1 ? 'success' : 'error'}}">
+        {{RegisterAnswer}}
+      </text>
+    </view>
+  </view>
+</view>

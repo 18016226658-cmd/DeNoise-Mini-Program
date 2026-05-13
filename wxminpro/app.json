@@ -1,0 +1,91 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    "pages/DeNoise/DeNoise",
+    "pages/history/history",
+    "pages/UserInfo/UserInfo",
+    "pages/AdminVisualization/AdminVisualization",
+    "pages/EditUserInfo/EditUserInfo"
+  ],
+  "window": {
+    "navigationBarTitleText": "音频降噪系统",
+    "navigationBarBackgroundColor": "#6A5ACD",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#6A5ACD",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/icon/home.png",
+        "selectedIconPath": "static/icon/home1.png"
+      },
+      {
+        "pagePath": "pages/DeNoise/DeNoise",
+        "text": "音频降噪",
+        "iconPath": "static/icon/DeNoise.png",
+        "selectedIconPath": "static/icon/DeNoise1.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史记录",
+        "iconPath": "static/icon/logs.png",
+        "selectedIconPath": "static/icon/logs.png"
+      },
+      {
+        "pagePath": "pages/UserInfo/UserInfo",
+        "text": "用户信息",
+        "iconPath": "static/icon/my.png",
+        "selectedIconPath": "static/icon/my1.png"
+      },
+      {
+        "pagePath": "pages/AdminVisualization/AdminVisualization",
+        "text": "数据可视化",
+        "iconPath": "static/icon/Visual.png",
+        "selectedIconPath": "static/icon/Visual1.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于语音输入的定位"
+    }
+  },
+  "subpackages": [
+    {
+      "root": "subpackages/user",
+      "name": "user",
+      "pages": [
+        "pages/login/login",
+        "pages/register/register",
+        "pages/EditUser/EditUser",
+        "pages/DelUser/DelUser",
+        "pages/loginout/loginout",
+        "pages/My/My",
+        "pages/UserInfo/UserInfo",
+        "pages/AdminVisualization/AdminVisualization"
+      ]
+    },
+    {
+      "root": "subpackages/audio",
+      "name": "audio",
+      "pages": [
+        "pages/AudioSep/AudioSep",
+        "pages/soundRecord/soundRecord",
+        "pages/LoginAudio/LoginAudio",
+        "pages/registerAudio/registerAudio"
+      ]
+    },
+    {
+      "root": "subpackages/other",
+      "name": "other",
+      "pages": [
+        "pages/telphone/telphone",
+        "pages/upload/upload"
+      ]
+    }
+  ],
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,133 @@
+<!--pages/splitter/splitter.wxml-->
+<view class="container">
+  <!-- 输入区域 -->
+  <view class="card input-card">
+    <view class="input-title">
+      <text>请输入要分解的大整数</text>
+    </view>
+    <view class="input-wrapper">
+      <textarea 
+        class="number-input" 
+        placeholder="例如：12345678901234567890"
+        value="{{inputNumber}}"
+        bindinput="onInputChange"
+        maxlength="200"
+        auto-height
+        show-confirm-bar="{{false}}"
+        type="digit"
+      ></textarea>
+    </view>
+    <view class="input-info">
+      <text class="digit-count">位数：{{digitCount}} / {{maxDigits}}</text>
+      <text class="error-text" wx:if="{{errorText}}">{{errorText}}</text>
+    </view>
+    <!-- 数字性质识别 -->
+    <view class="number-type-preview" wx:if="{{inputNumberTypeName && !errorText}}">
+      <view class="type-preview-item">
+        <text class="type-label">数字性质：</text>
+        <text class="type-value type-{{inputNumberType}}">{{inputNumberTypeName}}</text>
+      </view>
+      <text class="type-desc">{{inputNumberTypeDesc}}</text>
+    </view>
+    <!-- 分解模式选择 -->
+    <view class="mode-select">
+      <view class="mode-title">分解模式</view>
+      <radio-group class="mode-radio-group" bindchange="onModeChange">
+        <label class="mode-option">
+          <radio value="standard" checked="{{mode === 'standard'}}" />
+          <view class="mode-texts">
+            <text class="mode-name">标准模式</text>
+            <text class="mode-desc">优先尝试完全分解，总时间根据位数动态调整（最长约3分钟）</text>
+          </view>
+        </label>
+        <label class="mode-option">
+          <radio value="fast" checked="{{mode === 'fast'}}" />
+          <view class="mode-texts">
+            <text class="mode-name">快速模式</text>
+            <text class="mode-desc">侧重部分分解，时间更短（最长约1分钟），尽量多找因子</text>
+          </view>
+        </label>
+      </radio-group>
+    </view>
+    <button class="btn-primary" bindtap="startFactorize" disabled="{{!canStart || isCalculating}}">
+      {{isCalculating ? '计算中...' : '开始分解'}}
+    </button>
+    <button class="btn-secondary mt-20" bindtap="stopFactorize" wx:if="{{isCalculating}}">
+      停止计算
+    </button>
+  </view>
+
+  <!-- 进度显示 -->
+  <view class="card progress-card" wx:if="{{isCalculating || hasResult}}">
+    <view class="progress-title">分解进度</view>
+    <view class="progress-status">{{progressStatus}}</view>
+    <view class="progress-bar-wrapper" wx:if="{{isCalculating}}">
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{progressPercent}}%"></view>
+      </view>
+    </view>
+    <view class="progress-info">
+      <text>迭代次数：{{iterations}}</text>
+    </view>
+  </view>
+
+  <!-- 结果展示 -->
+  <view class="card result-card" wx:if="{{hasResult}}">
+    <view class="result-title">
+      <text>分解结果</text>
+      <text class="result-time">耗时：{{elapsedTime}}秒</text>
+    </view>
+    
+    <!-- 数字类型和分解程度 -->
+    <view class="result-info-row">
+      <view class="info-item">
+        <text class="info-label">数字类型</text>
+        <text class="info-value type-{{numberType}}">{{numberTypeName}}</text>
+        <text class="info-desc">{{numberTypeDesc}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">分解程度</text>
+        <text class="info-value level-{{factorizationLevel}}">{{factorizationLevelName}}</text>
+        <text class="info-desc">{{factorizationLevelDesc}}</text>
+      </view>
+    </view>
+
+    <view class="original-number">
+      <text class="label">原数：</text>
+      <text class="value">{{originalNumber}}</text>
+    </view>
+    <view class="factors-section">
+      <text class="label">因子：</text>
+      <view class="factors-list">
+        <view class="factor-item" wx:for="{{factors}}" wx:key="index">
+          <text class="factor-number">{{item.value}}</text>
+          <text class="factor-check" wx:if="{{item.isPrime}}">(素数)</text>
+        </view>
+      </view>
+    </view>
+    <view class="factorization-form">
+      <text class="label">分解式：</text>
+      <text class="formula">{{factorizationFormula}}</text>
+    </view>
+    <view class="result-actions">
+      <button class="btn-secondary" bindtap="saveToHistory">保存到历史</button>
+      <button class="btn-secondary" bindtap="copyResult">复制结果</button>
+    </view>
+  </view>
+
+  <!-- 使用提示 -->
+  <view class="card tip-card">
+    <view class="tip-title">💡 使用提示</view>
+    <view class="tip-content">
+      <text>• 支持最多{{maxDigits}}位整数分解</text>
+      <text>• 支持0和1的特殊分解</text>
+      <text>• 自动判断数字类型（素数/合数/非素非合）</text>
+      <text>• 显示分解程度（完全分解/部分分解/不能分解）</text>
+      <text>• 标准模式：适合追求完全分解，总时间根据位数动态调整（最长约3分钟）</text>
+      <text>• 快速模式：适合大整数探索，优先给出部分分解结果（最长约1分半）</text>
+      <text>• 建议输入50位以内并使用标准模式，以获得更高完全分解概率</text>
+      <text>• 分解过程可能需要一些时间，请耐心等待，可随时点击“停止计算”</text>
+    </view>
+  </view>
+</view>
+

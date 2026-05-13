@@ -1,0 +1,33 @@
+/* pages/loginout/loginout.wxss */
+.back-button {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+}
+
+.logout-btn {
+  padding: 15px 40px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #f44336;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}

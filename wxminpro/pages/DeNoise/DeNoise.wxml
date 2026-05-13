@@ -1,0 +1,87 @@
+<!--pages/DeNoise/DeNoise.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">音频降噪处理</text>
+    <text class="subtitle">基于巴特沃斯滤波器算法</text>
+  </view>
+
+  <!-- 文件选择区域 -->
+  <view class="section">
+    <button class="select-btn" bindtap="chooseAudio">
+      <text>选择音频文件</text>
+    </button>
+    <view class="file-info" wx:if="{{orgFileName}}">
+      <text class="file-name">{{orgFileName}}</text>
+    </view>
+  </view>
+
+  <!-- 音频信息 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <view class="info-title">音频信息</view>
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-label">文件大小：</text>
+        <text class="info-value">{{fileSize}} MB</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">总时长：</text>
+        <text class="info-value">{{duration}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">声道数：</text>
+        <text class="info-value">{{n_channels}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">剩余次数：</text>
+        <text class="info-value">{{MaxNoiseTimes - CurNoiseTimes}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 原始音频播放 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <view class="audio-title">
+      <text>原始音频</text>
+    </view>
+    <view class="audio-container">
+      <audio id="myAudio" class="audio-player" src="{{audioPath}}" name="{{title}}" author="{{album}}" bindtimeupdate="onAudioTimeUpdate" controls></audio>
+      <button class="control-btn" bindtap="SetAudioStart" disabled="{{!audioPath}}">
+        <image class="icon" src="/static/icon/GotoStart.png" mode="widthFix"></image>
+        <text>重置</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 降噪处理按钮 -->
+  <view class="section" wx:if="{{audioPath}}">
+    <button class="process-btn {{audioPath ? 'enabled' : 'disabled'}}" bindtap="DeNoiseAudio" disabled="{{!audioPath}}">
+      <text>开始降噪处理</text>
+    </button>
+  </view>
+
+  <!-- 降噪后音频播放 -->
+  <view class="section" wx:if="{{DeNoisePath}}">
+    <view class="audio-title">
+      <text>降噪后音频</text>
+      <text class="success-tag">处理完成</text>
+    </view>
+    <view class="audio-container">
+      <audio id="DeNoiseAudio" class="audio-player" src="{{DeNoisePath}}" name="降噪后音频" author="DeNoise" bindtimeupdate="onDeNoiseTimeUpdate" controls></audio>
+      <view class="control-group">
+        <button class="control-btn" bindtap="SetDeNoiseStart" disabled="{{!DeNoisePath}}">
+          <image class="icon" src="/static/icon/GotoStart.png" mode="widthFix"></image>
+          <text>重置</text>
+        </button>
+        <button class="download-btn" bindtap="DownloadDeNoise" disabled="{{!DeNoisePath}}">
+          <image class="icon" src="/static/icon/DownAudio.png" mode="widthFix"></image>
+          <text>下载</text>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 对比试听提示 -->
+  <view class="tip-section" wx:if="{{audioPath && DeNoisePath}}">
+    <text class="tip-text">💡 提示：您可以分别播放原始音频和降噪后音频进行对比试听</text>
+  </view>
+</view> 

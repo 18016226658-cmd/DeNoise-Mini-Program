@@ -1,0 +1,231 @@
+/* pages/chat/chat.wxss */
+
+.container {
+  padding: 20rpx;
+  background: linear-gradient(180deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* 头部区域 */
+.header {
+  text-align: center;
+  padding: 40rpx 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(102, 126, 234, 0.3);
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* 通用卡片区域 */
+.section {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 用户信息卡片 */
+.user-card {
+  padding: 40rpx 30rpx;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid #667eea;
+  box-shadow: 0 4rpx 15rpx rgba(102, 126, 234, 0.3);
+  margin-right: 30rpx;
+}
+
+.user-basic {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.user-type {
+  font-size: 24rpx;
+  color: #667eea;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%);
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  display: inline-block;
+  width: fit-content;
+}
+
+.user-info {
+  margin-top: 20rpx;
+}
+
+.info-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 2rpx solid #667eea;
+}
+
+.title-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.title-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  padding: 25rpx;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 15rpx;
+  border-left: 6rpx solid #667eea;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.info-item:active {
+  transform: translateX(5rpx);
+  box-shadow: 0 4rpx 12rpx rgba(102, 126, 234, 0.2);
+}
+
+.info-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  width: 60rpx;
+  text-align: center;
+}
+
+.info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.info-value {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+/* 功能菜单区域 */
+.menu-section {
+  padding: 30rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 2rpx solid #eee;
+}
+
+.section-icon {
+  font-size: 36rpx;
+  margin-right: 15rpx;
+  color: #667eea;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.menu-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 25rpx;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 15rpx;
+  border: 2rpx solid #f0f0f0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.menu-item:active {
+  transform: scale(0.98);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  box-shadow: 0 4rpx 15rpx rgba(102, 126, 234, 0.3);
+}
+
+.menu-item:active .menu-icon,
+.menu-item:active .menu-text,
+.menu-item:active .menu-arrow {
+  color: #ffffff;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  width: 60rpx;
+  text-align: center;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+.menu-arrow {
+  font-size: 40rpx;
+  color: #999999;
+  margin-left: 10rpx;
+}

@@ -1,0 +1,157 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="login-header">
+    <text class="app-title">大整数分解系统</text>
+    <text class="app-subtitle">欢迎使用</text>
+  </view>
+
+  <view class="login-content">
+    <!-- 登录表单 -->
+    <view class="card login-card" wx:if="{{!showRegister}}">
+      <view class="form-title">登录</view>
+      
+      <view class="form-item">
+        <view class="form-label">用户名</view>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入用户名"
+          value="{{loginUsername}}"
+          bindinput="onLoginUsernameInput"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">密码</view>
+        <view class="password-input-wrapper">
+          <input 
+            class="form-input password-input" 
+            type="text"
+            password="{{!showLoginPassword}}"
+            placeholder="请输入密码"
+            value="{{loginPassword}}"
+            bindinput="onLoginPasswordInput"
+          />
+          <view class="password-toggle" catchtap="toggleLoginPassword">
+            <text class="password-icon">{{showLoginPassword ? '👁️' : '👁️‍🗨️'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="form-item remember-item">
+        <checkbox-group bindchange="onRememberPasswordChange">
+          <label class="remember-label">
+            <checkbox value="remember" checked="{{rememberPassword}}" color="#FF69B4"/>
+            <text class="remember-text">记住密码</text>
+          </label>
+        </checkbox-group>
+      </view>
+
+      <button class="btn-primary login-btn" bindtap="handleLogin">登录</button>
+      
+      <view class="switch-mode">
+        <text>还没有账号？</text>
+        <text class="link-text" bindtap="switchToRegister">立即注册</text>
+      </view>
+    </view>
+
+    <!-- 注册表单 -->
+    <view class="card register-card" wx:else>
+      <view class="form-title">注册</view>
+      
+      <view class="form-item">
+        <view class="form-label">用户名</view>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入用户名（3-20个字符）"
+          value="{{registerUsername}}"
+          bindinput="onRegisterUsernameInput"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">密码</view>
+        <view class="password-input-wrapper">
+          <input 
+            class="form-input password-input" 
+            type="text"
+            password="{{!showRegisterPassword}}"
+            placeholder="请输入密码（至少6位）"
+            value="{{registerPassword}}"
+            bindinput="onRegisterPasswordInput"
+          />
+          <view class="password-toggle" catchtap="toggleRegisterPassword">
+            <text class="password-icon">{{showRegisterPassword ? '👁️' : '👁️‍🗨️'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">确认密码</view>
+        <view class="password-input-wrapper">
+          <input 
+            class="form-input password-input" 
+            type="text"
+            password="{{!showRegisterPasswordConfirm}}"
+            placeholder="请再次输入密码"
+            value="{{registerPasswordConfirm}}"
+            bindinput="onRegisterPasswordConfirmInput"
+          />
+          <view class="password-toggle" catchtap="toggleRegisterPasswordConfirm">
+            <text class="password-icon">{{showRegisterPasswordConfirm ? '👁️' : '👁️‍🗨️'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">性别</view>
+        <picker mode="selector" range="{{genderOptions}}" range-key="label" value="{{genderIndex}}" bindchange="onGenderChange">
+          <view class="picker-view">
+            <text wx:if="{{registerGender}}" class="picker-text">{{registerGender}}</text>
+            <text wx:else class="picker-placeholder">请选择性别</text>
+            <text class="picker-arrow">›</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">出生日期</view>
+        <picker mode="multiSelector" range="{{birthYearMonthDay}}" value="{{birthYearMonthDayIndex}}" bindchange="onBirthYearMonthDayChange" bindcolumnchange="onBirthYearMonthDayColumnChange">
+          <view class="picker-view">
+            <text wx:if="{{registerBirthYear && registerBirthMonth && registerBirthDay}}" class="picker-text">{{registerBirthYear}}年{{registerBirthMonth}}月{{registerBirthDay}}日</text>
+            <text wx:else class="picker-placeholder">请选择出生日期</text>
+            <text class="picker-arrow">›</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">工作</view>
+        <input 
+          class="form-input" 
+          type="text" 
+          placeholder="请输入工作"
+          value="{{registerJob}}"
+          bindinput="onRegisterJobInput"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">用户类型</view>
+        <view class="picker-view disabled">
+          <text>普通用户（注册后由管理员可升级）</text>
+        </view>
+        <view class="form-hint">新用户注册默认为普通用户，升级需联系管理员</view>
+      </view>
+
+      <button class="btn-primary register-btn" bindtap="handleRegister">注册</button>
+      
+      <view class="switch-mode">
+        <text>已有账号？</text>
+        <text class="link-text" bindtap="switchToLogin">立即登录</text>
+      </view>
+    </view>
+  </view>
+</view>
+

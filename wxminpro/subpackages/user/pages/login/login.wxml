@@ -1,0 +1,56 @@
+<!--pages/login/login.wxml-->
+ <!-- <text>pages/login/login.wxml</text> -->
+
+
+
+<view class="box">
+ <view class="title">
+   <text bindtap="" class="denglu" style="color: pink; position: absolute; left: 0px; top: 5; ">登录</text>
+   <navigator  url="/subpackages/user/pages/register/register" style="position: absolute; left: 150px; top: 5;">注册</navigator>
+   <view class="shadow shadow-1"></view>
+   <view class="shadow shadow-2"></view>  
+ </view>
+
+ <!-- 登录方式切换 -->
+ <view class="login-type-switch">
+   <view class="switch-item {{loginType === 'password' ? 'active' : ''}}" data-type="password" bindtap="switchLoginType">
+     <text>密码登录</text>
+   </view>
+   <view class="switch-item {{loginType === 'code' ? 'active' : ''}}" data-type="code" bindtap="switchLoginType">
+     <text>验证码登录</text>
+   </view>
+ </view>
+
+ <view class="longin">
+     <icon type="waiting" color="#44ADFB" size="16"></icon>
+     <input type="number" bindinput="PhoneInput" maxlength="11" auto-focus  placeholder="请输入手机号" value="{{Phone}}"/>
+  </view> 
+
+  <!-- 密码登录 -->
+  <view class="longin" wx:if="{{loginType === 'password'}}">
+     <icon type="waiting" color="#44ADFB" size="16"></icon>
+    <input type="password" bindinput="passwordInput" auto-focus placeholder="请输入密码" value="{{Password}}"/>
+ </view>
+
+ <!-- 验证码登录 -->
+ <view class="longin code-input" wx:if="{{loginType === 'code'}}">
+   <icon type="waiting" color="#44ADFB" size="16"></icon>
+   <input type="number" bindinput="codeInput" maxlength="6" placeholder="请输入6位验证码" value="{{Code}}" style="flex: 1;"/>
+   <button class="get-code-btn" bindtap="getCode" disabled="{{codeCountdown > 0}}">
+     {{codeCountdown > 0 ? codeCountdown + 's' : '获取验证码'}}
+   </button>
+ </view>
+
+ <button disabled="{{jin}}" bindtap="post">点击登录</button>
+  
+ </view>
+
+
+
+<!-- 重影 -->
+<!-- <view class="shadow shadow-1"></view> -->
+<!-- <view class="shadow shadow-2"></view> -->
+<!-- 说明 -->
+<view class="bottom-box">
+  demo·苏州大学应用技术学院·
+</view> 

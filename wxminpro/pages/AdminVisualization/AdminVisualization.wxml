@@ -1,0 +1,77 @@
+<!--pages/AdminVisualization/AdminVisualization.wxml-->
+<view class="container">
+  <!-- 顶部标题区，风格与历史记录页保持一致 -->
+  <view class="header">
+    <text class="title">数据可视化</text>
+    <text class="subtitle">仅管理员可查看整体降噪情况</text>
+  </view>
+
+  <!-- 主体内容白色卡片 -->
+  <view class="content">
+    <!-- 生成图表按钮 -->
+    <view class="generate-btn-container">
+      <button class="generate-btn" bindtap="regenerateCharts">
+        <text class="generate-btn-text">可视化</text>
+      </button>
+    </view>
+    
+    <!-- 图表选择按钮（两列宫格布局） -->
+    <view class="chart-selector">
+      <button class="chart-btn {{currentChart == 'date' ? 'chart-btn-active' : ''}}" bindtap="showDateChart">
+        <view class="chart-btn-title">日期－降噪次数</view>
+        <view class="chart-btn-desc">查看最近 30 天整体趋势</view>
+      </button>
+      <button class="chart-btn {{currentChart == 'week' ? 'chart-btn-active' : ''}}" bindtap="showWeekChart">
+        <view class="chart-btn-title">周次－降噪次数</view>
+        <view class="chart-btn-desc">一周内哪天使用最多</view>
+      </button>
+      <button class="chart-btn {{currentChart == 'time' ? 'chart-btn-active' : ''}}" bindtap="showTimeChart">
+        <view class="chart-btn-title">时间段－降噪次数</view>
+        <view class="chart-btn-desc">一天中高峰使用时段</view>
+      </button>
+      <button class="chart-btn {{currentChart == 'user' ? 'chart-btn-active' : ''}}" bindtap="showUserChart">
+        <view class="chart-btn-title">活跃用户－降噪次数</view>
+        <view class="chart-btn-desc">Top10 高频使用用户</view>
+      </button>
+    </view>
+
+    <!-- 图表展示区域，使用后端生成的图片 -->
+    <!-- 日期-降噪次数（折线图） -->
+    <view class="chart-section" wx:if="{{currentChart == 'date'}}">
+      <view class="chart-section-header">
+        <text class="chart-section-title">日期－降噪次数（折线图）</text>
+        <text class="chart-hint">图表由后端自动生成，每次启动时更新</text>
+      </view>
+      <image src="{{chartImages.dateImage}}" mode="aspectFit" class="chart-image" lazy-load="{{true}}" bindtap="previewImage" data-url="{{chartImages.dateImage}}" data-urls="{{allImageUrls}}"></image>
+    </view>
+
+    <!-- 周次-降噪次数（饼图） -->
+    <view class="chart-section" wx:if="{{currentChart == 'week'}}">
+      <view class="chart-section-header">
+        <text class="chart-section-title">周次－降噪次数（饼图）</text>
+        <text class="chart-hint">图表由后端自动生成，每次启动时更新</text>
+      </view>
+      <image src="{{chartImages.weekImage}}" mode="aspectFit" class="chart-image" lazy-load="{{true}}" bindtap="previewImage" data-url="{{chartImages.weekImage}}" data-urls="{{allImageUrls}}"></image>
+    </view>
+
+    <!-- 一天中时间-降噪次数（折线图） -->
+    <view class="chart-section" wx:if="{{currentChart == 'time'}}">
+      <view class="chart-section-header">
+        <text class="chart-section-title">一天中时间－降噪次数（折线图）</text>
+        <text class="chart-hint">图表由后端自动生成，每次启动时更新</text>
+      </view>
+      <image src="{{chartImages.timeImage}}" mode="aspectFit" class="chart-image" lazy-load="{{true}}" bindtap="previewImage" data-url="{{chartImages.timeImage}}" data-urls="{{allImageUrls}}"></image>
+    </view>
+
+    <!-- 活跃用户-降噪次数（柱状图） -->
+    <view class="chart-section" wx:if="{{currentChart == 'user'}}">
+      <view class="chart-section-header">
+        <text class="chart-section-title">活跃用户－降噪次数（柱状图）</text>
+        <text class="chart-hint">图表由后端自动生成，每次启动时更新</text>
+      </view>
+      <image src="{{chartImages.userImage}}" mode="aspectFit" class="chart-image" lazy-load="{{true}}" bindtap="previewImage" data-url="{{chartImages.userImage}}" data-urls="{{allImageUrls}}"></image>
+    </view>
+  </view>
+</view>
+
+

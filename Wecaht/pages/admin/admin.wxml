@@ -1,0 +1,86 @@
+<!--pages/admin/admin.wxml-->
+<view class="container">
+  <!-- 统计信息 -->
+  <view class="card stats-card">
+    <view class="stats-title">用户统计</view>
+    <view class="stats-content">
+      <view class="stat-item">
+        <text class="stat-value">{{totalUsers}}</text>
+        <text class="stat-label">总用户数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{normalCount}}</text>
+        <text class="stat-label">普通用户</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{vipCount}}</text>
+        <text class="stat-label">VIP用户</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{svipCount}}</text>
+        <text class="stat-label">SVIP用户</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="card filter-card">
+    <view class="filter-title">筛选用户</view>
+    <view class="filter-buttons">
+      <button 
+        class="filter-btn {{filterLevel === 'all' ? 'active' : ''}}" 
+        bindtap="setFilter"
+        data-level="all"
+      >全部</button>
+      <button 
+        class="filter-btn {{filterLevel === 'normal' ? 'active' : ''}}" 
+        bindtap="setFilter"
+        data-level="normal"
+      >普通用户</button>
+      <button 
+        class="filter-btn {{filterLevel === 'vip' ? 'active' : ''}}" 
+        bindtap="setFilter"
+        data-level="vip"
+      >VIP用户</button>
+      <button 
+        class="filter-btn {{filterLevel === 'svip' ? 'active' : ''}}" 
+        bindtap="setFilter"
+        data-level="svip"
+      >SVIP用户</button>
+    </view>
+  </view>
+
+  <!-- 用户列表 -->
+  <view class="user-list">
+    <view class="user-item card" wx:for="{{userList}}" wx:key="username">
+      <view class="user-item-header" bindtap="viewUserDetail" data-username="{{item.username}}">
+        <view class="user-item-avatar">
+          <image wx:if="{{item.avatar}}" class="avatar-img" src="{{item.avatar}}" mode="aspectFill"></image>
+          <text wx:else class="avatar-text">{{item.username.charAt(0).toUpperCase()}}</text>
+        </view>
+        <view class="user-item-info">
+          <text class="user-item-name">{{item.username}}</text>
+          <text class="user-item-level level-{{item.level}}">{{item.levelName}}</text>
+        </view>
+        <view class="user-item-badge">
+          <text class="badge-text">{{item.maxDigits}}位</text>
+        </view>
+      </view>
+      <view class="user-item-footer">
+        <text class="user-item-time">注册：{{item.createTimeStr}}</text>
+        <text class="user-item-login">登录：{{item.loginCount}}次</text>
+      </view>
+      <view class="user-item-actions">
+        <button class="action-btn detail-btn" bindtap="viewUserDetail" data-username="{{item.username}}">查看详情</button>
+        <button class="action-btn edit-btn" bindtap="editUser" data-username="{{item.username}}">修改等级</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{userList.length === 0}}">
+    <text class="empty-icon">👥</text>
+    <text class="empty-text">暂无用户</text>
+  </view>
+</view>
+

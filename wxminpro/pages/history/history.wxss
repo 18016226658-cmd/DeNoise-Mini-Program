@@ -1,0 +1,139 @@
+/* pages/history/history.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 30rpx 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 24rpx;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.content {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+}
+
+.loading, .empty {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999999;
+  font-size: 28rpx;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.history-item {
+  background-color: #f9f9f9;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  border: 1rpx solid #e0e0e0;
+}
+
+.item-header {
+  margin-bottom: 20rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.file-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  display: block;
+  word-break: break-all;
+}
+
+.item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
+  padding: 15rpx;
+  background-color: #f0f0f0;
+  border-radius: 10rpx;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.meta-label {
+  color: #666666;
+  margin-right: 10rpx;
+  min-width: 140rpx;
+}
+
+.meta-value {
+  color: #333333;
+  font-weight: 500;
+  flex: 1;
+}
+
+.item-info {
+  display: flex;
+  margin-bottom: 15rpx;
+  font-size: 28rpx;
+}
+
+.info-label {
+  color: #666666;
+  width: 150rpx;
+}
+
+.info-value {
+  color: #333333;
+  font-weight: 500;
+}
+
+.audio-controls {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #e0e0e0;
+}
+
+.play-btn, .download-btn {
+  flex: 1;
+  font-size: 26rpx;
+  padding: 15rpx 0;
+  border-radius: 10rpx;
+  background-color: #667eea;
+  color: #ffffff;
+  border: none;
+}
+
+.download-btn {
+  background-color: #52c41a;
+}
+
+.play-btn::after, .download-btn::after {
+  border: none;
+}
+

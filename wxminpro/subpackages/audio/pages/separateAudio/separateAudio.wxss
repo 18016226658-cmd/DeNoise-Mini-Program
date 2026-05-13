@@ -1,0 +1,160 @@
+/* pages/separateAudio/separateAudio.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 30rpx 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 24rpx;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.section {
+  background-color: #ffffff;
+  border-radius: 15rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.select-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  padding: 25rpx 0;
+  border-radius: 10rpx;
+  border: none;
+}
+
+.select-btn::after {
+  border: none;
+}
+
+.file-info {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 10rpx;
+}
+
+.file-name {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+.info-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx solid #667eea;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  padding: 15rpx;
+  background-color: #f9f9f9;
+  border-radius: 10rpx;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 5rpx;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+.audio-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx solid #e0e0e0;
+}
+
+.audio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.audio-player {
+  width: 100%;
+}
+
+.process-btn {
+  width: 100%;
+  font-size: 32rpx;
+  padding: 25rpx 0;
+  border-radius: 10rpx;
+  border: none;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: #ffffff;
+}
+
+.process-btn::after {
+  border: none;
+}
+
+.result-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 30rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 2rpx solid #667eea;
+}
+
+.audio-section {
+  margin-bottom: 30rpx;
+}
+
+.download-btn {
+  width: 100%;
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  border: none;
+  background-color: #52c41a;
+  color: #ffffff;
+  margin-top: 15rpx;
+}
+
+.download-btn::after {
+  border: none;
+}
+

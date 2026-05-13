@@ -1,0 +1,93 @@
+<!--pages/telphone/telphone.wxml-->
+<view class="page-container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">手机号登录</text>
+    <text class="subtitle">快速登录，安全便捷</text>
+  </view>
+
+  <!-- 登录表单区域 -->
+  <view class="section form-section">
+    <view class="section-header">
+      <text class="section-icon">📱</text>
+      <text class="section-title">登录信息</text>
+    </view>
+
+    <!-- 手机号输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">📞</text>
+        <text class="label-text">手机号</text>
+      </view>
+      <input 
+        class="custom-input" 
+        type="number" 
+        maxlength="11" 
+        bindinput="inputPhone" 
+        placeholder="请输入11位手机号" 
+        value="{{Phone}}"
+        confirm-type="next" />
+    </view>
+
+    <!-- 验证码输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">🔐</text>
+        <text class="label-text">验证码</text>
+      </view>
+      <view class="code-input-wrapper">
+        <input 
+          class="custom-input code-input" 
+          type="number" 
+          maxlength="6" 
+          bindinput="inputCode" 
+          placeholder="请输入6位验证码" 
+          value="{{Code}}"
+          confirm-type="done" />
+        <button class="get-code-btn" bindtap="getCode" disabled="{{gettingCode || countdown > 0}}">
+          <text wx:if="{{countdown > 0}}">{{countdown}}秒后重试</text>
+          <text wx:else>获取验证码</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button class="login-btn" bindtap="login" disabled="{{loggingIn || !Phone || !Code}}">
+      <text wx:if="{{!loggingIn}}">立即登录</text>
+      <text wx:else>登录中...</text>
+    </button>
+  </view>
+
+  <!-- 后台返回数据展示区域 -->
+  <view class="section result-section" wx:if="{{responseData && Object.keys(responseData).length > 0}}">
+    <view class="section-header">
+      <text class="section-icon">📋</text>
+      <text class="section-title">服务器响应</text>
+    </view>
+
+    <!-- 完整数据展示 -->
+    <view class="data-display">
+      <view class="data-title">完整响应数据：</view>
+      <view class="data-content">
+        <view class="data-item" wx:for="{{responseData}}" wx:key="index">
+          <text class="data-key">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 关键数据展示 -->
+    <view class="data-display" wx:if="{{responseData.Phone || responseData.Code}}">
+      <view class="data-title">关键信息：</view>
+      <view class="data-content key-data">
+        <view class="key-item">
+          <text class="key-label">手机号：</text>
+          <text class="key-value">{{responseData.Phone || '未返回'}}</text>
+        </view>
+        <view class="key-item">
+          <text class="key-label">验证码：</text>
+          <text class="key-value">{{responseData.Code || '未返回'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+<!--pages/LoginAudio/LoginAudio.wxml-->
+<view class="page-container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">音频降噪系统</text>
+    <text class="subtitle">欢迎回来</text>
+  </view>
+
+  <!-- 登录/注册切换 -->
+  <view class="section tab-section">
+    <view class="tab-container">
+      <view class="tab-item active">
+        <text class="tab-text">登录</text>
+      </view>
+      <navigator class="tab-item" url="/subpackages/audio/pages/registerAudio/registerAudio">
+        <text class="tab-text">注册</text>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 登录表单区域 -->
+  <view class="section form-section">
+    <!-- 手机号输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">📱</text>
+        <text class="label-text">手机号</text>
+      </view>
+      <view class="input-wrapper">
+        <input 
+          class="custom-input" 
+          type="number" 
+          maxlength="11" 
+          bindinput="PhoneInput" 
+          placeholder="请输入11位手机号" 
+          value="{{Phone}}"
+          confirm-type="next" />
+      </view>
+    </view>
+
+    <!-- 密码输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-icon">🔒</text>
+        <text class="label-text">密码</text>
+      </view>
+      <view class="input-wrapper">
+        <input 
+          class="custom-input" 
+          type="password" 
+          bindinput="passwordInput" 
+          placeholder="请输入密码" 
+          value="{{Password}}"
+          confirm-type="done" />
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button class="login-btn" bindtap="post" disabled="{{jin || loggingIn}}">
+      <text wx:if="{{!loggingIn}}">立即登录</text>
+      <text wx:else>登录中...</text>
+    </button>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <text>demo·苏州大学应用技术学院</text>
+  </view>
+</view>

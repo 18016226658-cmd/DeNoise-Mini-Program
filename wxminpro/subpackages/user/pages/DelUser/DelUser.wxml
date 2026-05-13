@@ -1,0 +1,34 @@
+
+<view class="contarner">
+  <view class="content">
+    <view class="title flex-def flex-cCenter flex-zBetween">
+      <view>注册表共有(<text>{{list.length}}</text>)个用户</view>
+      <view class="editBtn" bindtap="showSelIcon">{{iconStatu?'取消':'编辑'}}</view>
+    </view>
+    <view class="{{iconStatu?'margin-b':''}}">
+      <view bindtap="toggleSel" class="item flex-def flex-cCenter flex-zBetween" wx:for="{{list}}" wx:key="{{index}}" data-id='{{item.id}}'>
+        <view class="flex-def flex-cCenter flex-zBetween" data-id='{{item.id}}'>
+          <icon wx:if="{{iconStatu}}" type="success" size="20" color="{{item.selStatu?'#0f0':'#999'}}" data-id='{{item.id}}' />
+          <view data-id='{{item.id}}'>
+            <text data-id='{{item.id}}'>手机号：{{item.Phone}}-</text>
+            <text data-id='{{item.id}}'>用户名：{{item.UserName}}</text>
+          </view>
+        </view>
+        <view data-id='{{item.id}}'>   
+          <text class="wrongCount" data-id='{{item.id}}' >等级：{{item.UserType}}</text>
+          <text class="wrongCount" data-id='{{item.id}} '>密码：{{item.Password}}</text>
+        </view>
+        <!-- <view data-id='{{item.id}}'>
+          <text class="wrongCount" data-id='{{item.id}}'>出生：{{item.Birthday}}</text>
+          <text class="wrongCount" data-id='{{item.id}}'>性别：{{item.Gender}}</text>
+           <text class="wrongText" data-id='{{item.id}} '>等级：{{item.UserType}}</text>
+        </view> -->
+
+      </view>
+    </view>
+  </view>
+  <view class="footer" wx:if="{{iconStatu}}" bindtap="delItem">
+    移除选中的注册用户({{selList.length}})
+  </view>
+</view>
+
